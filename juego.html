@@ -6,9 +6,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script>
             $(document).ready(function () {
-
-
-                $("form").on("submit", function (e) {
+                $("form").submit(function (e) {
                     e.preventDefault();
                     console.log($(precio).val());
                     let nombreInput = document.getElementById("nombre");
@@ -23,10 +21,10 @@
                     let validacionDistribuidora = $("#distribuidora").val() == "";
                     let validacionImagen = $("#imagen").val().length >= 10 && $("#imagen").val().length <= 256;
                     if (validacionNombre && validacionDescripcion && validacionPrecio && !validacionGenero && !validacionPlataforma && !validacionDistribuidora && validacionImagen) {
-                        return true;
+                        return;
+                    }else{
+                        $(".invalid-feedback").show(500).delay(1000).hide(500);
                     }
-                    console.log(validacionPrecio);
-                    return false;
                 });
 
 
