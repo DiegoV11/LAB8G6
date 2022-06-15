@@ -36,8 +36,6 @@
                         };
                         index += 1;
                         lista.push(objeto);
-                        for(let i = 0;i<=lista.length;i++){
-                            let objeto2 = lista[i];
                             $(".tabla").append(
                                 '<tr>'+
                                 '<td class="text-center">'+(parseInt(objeto2.id,10) + 1)+'</td>'+
@@ -50,7 +48,6 @@
                                 '<td class="text-center"><a class="btn btn-primary"  ><span class="bi bi-pencil-square"></span></a></td>' +
                                 '<td class="text-center"><a class="btn btn-danger" ><span class="bi bi-trash"></span></a></td>'
                                 +'</tr>')
-                        }
                         return;
                     }else{
                         $(".invalid-feedback").show(500).delay(1000).hide(500);
@@ -67,7 +64,6 @@
 
             <div id="content">
                 <main>
-                    <!-- Contenido -->
                     <div class="page-header text-center">
                         <h2 > Juego</h2>
                     </div>
