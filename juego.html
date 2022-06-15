@@ -4,6 +4,36 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function () {
+
+
+                $("form").on("submit", function (e) {
+                    e.preventDefault();
+                    console.log($(precio).val());
+                    let nombreInput = document.getElementById("nombre");
+                    let descripcionInput = document.getElementById("descripcion");
+
+
+                    let validacionNombre = nombreInput.value.length >= 3 && nombreInput.value.length <= 50;
+                    let validacionDescripcion = descripcionInput.value.length >= 3 && descripcionInput.value.length <= 512;
+                    let validacionPrecio = $("#precio").val() >= 50 && $("#precio").val() <= 550;
+                    let validacionGenero = $("#genero").val() == "";
+                    let validacionPlataforma = $("#plataforma").val() == "";
+                    let validacionDistribuidora = $("#distribuidora").val() == "";
+                    let validacionImagen = $("#imagen").val().length >= 10 && $("#imagen").val().length <= 256;
+                    if (validacionNombre && validacionDescripcion && validacionPrecio && !validacionGenero && !validacionPlataforma && !validacionDistribuidora && validacionImagen) {
+                        return true;
+                    }
+                    console.log(validacionPrecio);
+                    return false;
+                });
+
+
+            });
+        </script>
+
+
     </head>
     <body>
         <div class='container container-app'>
@@ -15,7 +45,7 @@
                         <h2 > Juego</h2>
                     </div>
                     <div class="container-fluid">
-                        <form class="row g-3" action="juego.html" onsubmit="return validarForm()"  >
+                        <form class="row g-3" action="juego.html"  >
                             <div class="form-group">
                                 <label>Nombre</label>
                                 <input type="text" class="form-control" name="nombre" id="nombre" >
@@ -107,7 +137,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td ></td>
+                    <td></td>
                     <td></td>
                     <td ></td>
                     <td ></td>
@@ -117,44 +147,7 @@
                 </tr>
             </tbody>
         </table>
-        <script>
-            function validarForm(){
-                console.log($(precio).val());
-                let nombreInput = document.getElementById("nombre");
-                let descripcionInput = document.getElementById("descripcion");
-                let precioInput = document.getElementById("precio");
-                let generoInput = document.getElementById("genero");
-                let plataformaInput = document.getElementById("plataforma");
-                let distribuidoraInput = document.getElementById("distribuidora");
-                let imagenInput = document.getElementById("imagen");
 
-
-                let validacionNombre =nombreInput.value.length>=3 && nombreInput.value.length<=50;
-                console.log(validacionNombre);
-                let validacionDescripcion = descripcionInput.value.length>=3 && descripcionInput.value.length<=512;
-                console.log(validacionDescripcion);
-                let validacionPrecio = $(precio).val()>=50 && $(precio).val()<=550;
-                console.log(validacionPrecio);
-                let validacionGenero = $(genero).val()=="";
-                console.log(!validacionGenero);
-                let validacionPlataforma = $(plataforma).val()=="";
-                console.log(!validacionPlataforma);
-                let validacionDistribuidora = $(distribuidora).val()=="";
-                console.log(!validacionDistribuidora);
-                let validacionImagen = $(imagen).val().length>=10 && $(imagen).val().length<=256 ;
-                console.log(validacionImagen);
-
-                if(validacionNombre && validacionDescripcion && validacionPrecio && !validacionGenero &&!validacionPlataforma && !validacionDistribuidora && validacionImagen){
-                    console.log("Verdadero");
-                    return true;
-
-                }
-                console.log($(precio).attr('type'));
-                console.log("Falsooo");
-                return false;
-            }
-
-        </script>
 
 
     </body>
