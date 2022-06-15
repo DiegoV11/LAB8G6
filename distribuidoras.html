@@ -23,10 +23,10 @@
                     let fundacionInput = document.getElementById("fundacion");
                     let paisInput = document.getElementById("pais")
 
-                    let validacionNombre = nombreInput.value.length>=3 && nombreInput.size<=50;
+                    let validacionNombre = nombreInput.value.length>=3 && nombreInput.value.length<=50;
                     let validacionDescripcion =descripcionInput.value.length>=3 && descripcionInput.value.length<=512;
                     let validacionWeb = webInput.value.length>=3 && webInput.value.length<=198;
-                    let validacionFundacion = fundacionInput.value <= 1800 && fundacionInput.value>=2100;
+                    let validacionFundacion = fundacionInput.value >= 1800 && fundacionInput.value<=2100;
                     let validacionPais = paisInput.value == "";
 
                     if(validacionNombre && validacionDescripcion && validacionWeb && validacionFundacion && !validacionPais){
@@ -51,7 +51,6 @@
                             '<td class="text-center"><a class="btn btn-primary"  ><span class="bi bi-pencil-square"></span></a></td>' +
                             '<td class="text-center"><a class="btn btn-danger" ><span class="bi bi-trash"></span></a></td>'
                             +'</tr>');
-
                         return;
                     }else{
                         $(".invalid-feedback").show(500).delay(1000).hide(500);
