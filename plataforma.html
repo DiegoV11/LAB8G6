@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class='container container-app'>
+    <div id="content">
+        <main>
+            <!-- Contenido -->
+            <div class="page-header text-center">
+                <h1>Plataformas</h1>
+            </div>
+            <button onclick="">Crear Plataforma</button>
+            <br>
+            <div class="container-fluid">
+                <form  class="row g-3" action="plataforma.html" onsubmit="return validarForm()">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre" >
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" ></textarea>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Web</label>
+                        <input type="url" class="form-control" id="web" >
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-danger">Cancelar</a>
+                        <button type="submit" class="btn btn-primary" >Agregar</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <!-- /Contenido -->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th></th>
+            <th style="width: 18%">Nombre</th>
+            <th style="width: 32%">Descripción</th>
+            <th style="width: 20%">Web</th>
+            <th style="width: 8%"></th>
+            <th style="width: 8%"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td ></td>
+            <td></td>
+            <td ></td>
+            <td><a class="btn btn-primary"  ><span class="bi bi-pencil-square"></span></a></td>
+            <td><a class="btn btn-danger" ><span class="bi bi-trash"></span></a></td>
+        </tr>
+        </tbody>
+    </table>
+    <script>
+        function validarForm(){
+            let nombreInput = document.getElementById("nombre");
+            let descripcionInput = document.getElementById("descripcion");
+            let WebInput = document.getElementById("web");
+
+
+            let validacionNombre =nombreInput.value.length>=3 && nombreInput.value.length<=20;
+            console.log(validacionNombre);
+            let validacionDescripcion = descripcionInput.value.length>=3 && descripcionInput.value.length<=512;
+            console.log(validacionDescripcion);
+            let validacionWeb = WebInput.length>=10 && WebInput.length<=256 ;
+            console.log(validacionWeb);
+
+            if(validacionNombre && validacionDescripcion && validacionWeb){
+                console.log("Verdadero");
+                return true;
+            }
+            console.log("Fals");
+            return false;
+        }
+
+
+
+
+
+    </script>
+</div>
+</body>
+</html>
