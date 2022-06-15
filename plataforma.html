@@ -32,10 +32,11 @@
                         lista.push(plataforma);
                             $(".tabla").append(
                                 '<tr>'+
-                                '<td class="text-center">'+(parseInt(plataforma2.id,10) + 1)+'</td>'+
-                                '<td class="text-center">'+plataforma2.nombre+'</td>'+
-                                '<td class="text-center">'+plataforma2.descripcion+'</td>'+
-                                '<td class="text-center">'+plataforma2.web+'</td>'+
+                                '<td class="text-center">'+(parseInt(plataforma.id,10) + 1)+'</td>'+
+                                '<td></td>'+
+                                '<td class="text-center">'+plataforma.nombre+'</td>'+
+                                '<td class="text-center">'+plataforma.descripcion+'</td>'+
+                                '<td class="text-center">'+plataforma.web+'</td>'+
                                 '<td class="text-center"><a class="btn btn-primary"  ><span class="bi bi-pencil-square"></span></a></td>' +
                                 '<td class="text-center"><a class="btn btn-danger" ><span class="bi bi-trash"></span></a></td>'+
                                 '</tr>')
@@ -43,6 +44,23 @@
                     }else{
                         $(".invalid-feedback").show(500).delay(1000).hide(500);
                     }
+                });
+                $(".tabla").on("click",".btn-danger",function (){
+                    //$(this).parent().parent().remove();
+                    $(this).closest("tr").remove();
+                })
+
+                $(".tabla").on("click",".btn-primary",function (){
+                    let name=$(this).closest("tr").attr("nombreInput");
+                    let description=$(this).closest("tr").attr("descripcion");
+                    let web1=$(this).closest("tr").attr("web");
+
+                    $(this).closest("tr").find("td:eq(2)").html("<input name='edit_nombre' value='"+name+'>"');
+                    $(this).closest("tr").find("td:eq(3)").html("<input name='edit_descripcion' value='"+description+'>"');
+                    $(this).closest("tr").find("td:eq(4)").html("<input name='edit_web' value='"+web1+'>"');
+
+                    $(this).closest("tr").find("td:eq(5)").prepend("<button type='button' class='btn btn-primary' >Guardar</button>");
+                    $(this).hide()
 
                 });
             });
