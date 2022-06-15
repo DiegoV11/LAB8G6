@@ -120,42 +120,32 @@
 
 
         <script>
-            function validarForm(){
+        $(document).ready(function () {
+
+
+            $("form").on("submit", function (e) {
+                e.preventDefault();
                 console.log($(precio).val());
                 let nombreInput = document.getElementById("nombre");
                 let descripcionInput = document.getElementById("descripcion");
-                let precioInput = document.getElementById("precio");
-                let generoInput = document.getElementById("genero");
-                let plataformaInput = document.getElementById("plataforma");
-                let distribuidoraInput = document.getElementById("distribuidora");
-                let imagenInput = document.getElementById("imagen");
 
 
-                let validacionNombre =nombreInput.value.length>=3 && nombreInput.value.length<=50;
-                console.log(validacionNombre);
-                let validacionDescripcion = descripcionInput.value.length>=3 && descripcionInput.value.length<=512;
-                console.log(validacionDescripcion);
-                let validacionPrecio = $(precio).val()>=50 && $(precio).val()<=550;
-                console.log(validacionPrecio);
-                let validacionGenero = $(genero).val()=="";
-                console.log(!validacionGenero);
-                let validacionPlataforma = $(plataforma).val()=="";
-                console.log(!validacionPlataforma);
-                let validacionDistribuidora = $(distribuidora).val()=="";
-                console.log(!validacionDistribuidora);
-                let validacionImagen = $(imagen).val().length>=10 && $(imagen).val().length<=256 ;
-                console.log(validacionImagen);
-
-                if(validacionNombre && validacionDescripcion && validacionPrecio && !validacionGenero &&!validacionPlataforma && !validacionDistribuidora && validacionImagen){
-                    console.log("Verdadero");
+                let validacionNombre = nombreInput.value.length >= 3 && nombreInput.value.length <= 50;
+                let validacionDescripcion = descripcionInput.value.length >= 3 && descripcionInput.value.length <= 512;
+                let validacionPrecio = $("#precio").val() >= 50 && $("#precio").val() <= 550;
+                let validacionGenero = $("#genero").val() == "";
+                let validacionPlataforma = $("#plataforma").val() == "";
+                let validacionDistribuidora = $("#distribuidora").val() == "";
+                let validacionImagen = $("#imagen").val().length >= 10 && $("#imagen").val().length <= 256;
+                if (validacionNombre && validacionDescripcion && validacionPrecio && !validacionGenero && !validacionPlataforma && !validacionDistribuidora && validacionImagen) {
                     return true;
-
                 }
-                console.log($(precio).attr('type'));
-                console.log("Falsooo");
+                console.log(validacionPrecio);
                 return false;
-            }
+            });
 
+
+        });
         </script>
 
 
