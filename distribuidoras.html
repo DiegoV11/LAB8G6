@@ -57,6 +57,9 @@
                     }
 
                 });
+                $(".tabla").on("click",".btn-danger", function (){
+                    $(this).closest("tr").remove();
+                });
             });
 
 
@@ -104,14 +107,14 @@
                             <div class="form-group">
                                 <label >Pais</label>
                                 <select id="pais" name="pais" class="form-select"  >
-                                    <option value="-1">- Seleccione -</option>
-                                    <option value="Wii"> Peru </option>
-                                    <option value="PlayStation 4 "> Estados Unidos </option>
-                                    <option value="Xbox 360"> España </option>
-                                    <option value="Nintendo Switch"> Mexico </option>
-                                    <option value="PlayStation 5 "> Brasil </option>
-                                    <option value="Xbox Serie X"> Japon </option>
-                                    <option value="Nintendo Switch Lite"> China </option>
+                                    <option value="0">- Seleccione -</option>
+                                    <option value="Peru"> Peru </option>
+                                    <option value="Estados Unidos "> Estados Unidos </option>
+                                    <option value="España"> España </option>
+                                    <option value="Mexico"> Mexico </option>
+                                    <option value="Brasil "> Brasil </option>
+                                    <option value="Japon"> Japon </option>
+                                    <option value="China"> China </option>
                                 </select>
                                 <div class="invalid-feedback" >Error</div>
                             </div>
