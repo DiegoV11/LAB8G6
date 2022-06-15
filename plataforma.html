@@ -1,93 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-</head>
-<body>
-<div class='container container-app'>
-    <div id="content">
-        <main>
-            <!-- Contenido -->
-            <div class="page-header text-center">
-                <h1>Plataformas</h1>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link href="styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function (){
+                var lista=[];
+                var index = 0;
+                $("form").submit(function (e){
+                    e.preventDefault();
+                    let nombreInput = document.getElementById("nombre");
+                    let descripcionInput = document.getElementById("descripcion");
+                    let webInput = document.getElementById("web");
+
+                    let validacionNombre =nombreInput.value.length>=3 && nombreInput.value.length<=20;
+                    let validacionDescripcion = descripcionInput.value.length>=3 && descripcionInput.value.length<=512;
+                    let validacionWeb = webInput.value.length>=3 && webInput.value.length<=256;
+
+                    if(validacionNombre && validacionDescripcion && validacionWeb){
+                        let plataforma = {
+                            id:index,
+                            nombre:nombreInput.value,
+                            descripcion:descripcionInput.value,
+                            web:webInput.value,
+                        };
+                        index += 1;
+                        lista.push(plataforma);
+                            $(".tabla").append(
+                                '<tr>'+
+                                '<td class="text-center">'+(parseInt(plataforma2.id,10) + 1)+'</td>'+
+                                '<td class="text-center">'+plataforma2.nombre+'</td>'+
+                                '<td class="text-center">'+plataforma2.descripcion+'</td>'+
+                                '<td class="text-center">'+plataforma2.web+'</td>'+
+                                '<td class="text-center"><a class="btn btn-primary"  ><span class="bi bi-pencil-square"></span></a></td>' +
+                                '<td class="text-center"><a class="btn btn-danger" ><span class="bi bi-trash"></span></a></td>'+
+                                '</tr>')
+                        return;
+                    }else{
+                        $(".invalid-feedback").show(500).delay(1000).hide(500);
+                    }
+
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        <div class='container container-app'>
+            <div id="content">
+                <main>
+                    <div class="page-header text-center">
+                        <h1>Plataformas</h1>
+                    </div>
+                    <div class="container-fluid">
+                        <form  class="row g-3" action="plataforma.html">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" name="nombre" id="nombre" >
+                                <div class="invalid-feedback" >Error</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea class="form-control" id="descripcion" name="descripcion" ></textarea>
+                                <div class="invalid-feedback" >Error</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Web</label>
+                                <input type="url" class="form-control" id="web" >
+                                <div class="invalid-feedback" >Error</div>
+                            </div>
+                            <div class="form-group">
+                                <a class="btn btn-danger">Cancelar</a>
+                                <button type="submit" class="btn btn-primary">Añadir</button>
+                            </div>
+                        </form>
+                    </div>
+                </main>
             </div>
-            <button onclick="">Crear Plataforma</button>
-            <br>
-            <div class="container-fluid">
-                <form  class="row g-3" action="plataforma.html" onsubmit="return validarForm()">
-                    <div class="form-group">
-                        <label>Nombre</label>
-                        <input type="text" class="form-control" name="nombre" id="nombre" >
-                    </div>
-                    <div class="form-group">
-                        <label>Descripción</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" ></textarea>
-
-                    </div>
-                    <div class="form-group">
-                        <label>Web</label>
-                        <input type="url" class="form-control" id="web" >
-                    </div>
-                    <div class="form-group">
-                        <a class="btn btn-danger">Cancelar</a>
-                        <button type="submit" class="btn btn-primary" >Agregar</button>
-                    </div>
-                </form>
-            </div>
-        </main>
-    </div>
-    <!-- /Contenido -->
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th></th>
-            <th style="width: 18%">Nombre</th>
-            <th style="width: 32%">Descripción</th>
-            <th style="width: 20%">Web</th>
-            <th style="width: 8%"></th>
-            <th style="width: 8%"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td ></td>
-            <td></td>
-            <td ></td>
-            <td><a class="btn btn-primary"  ><span class="bi bi-pencil-square"></span></a></td>
-            <td><a class="btn btn-danger" ><span class="bi bi-trash"></span></a></td>
-        </tr>
-        </tbody>
-    </table>
-    <script>
-        function validarForm(){
-            let nombreInput = document.getElementById("nombre");
-            let descripcionInput = document.getElementById("descripcion");
-            let WebInput = document.getElementById("web");
-
-
-            let validacionNombre =nombreInput.value.length>=3 && nombreInput.value.length<=20;
-            console.log(validacionNombre);
-            let validacionDescripcion = descripcionInput.value.length>=3 && descripcionInput.value.length<=512;
-            console.log(validacionDescripcion);
-            let validacionWeb = WebInput.length>=10 && WebInput.length<=256 ;
-            console.log(validacionWeb);
-
-            if(validacionNombre && validacionDescripcion && validacionWeb){
-                console.log("Verdadero");
-                return true;
-            }
-            console.log("Fals");
-            return false;
-        }
-
-
-
-
-
-    </script>
-</div>
-</body>
+            <table class="table table-dark table-hover mt-2">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th></th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Web</th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                </tr>
+                </thead>
+                <tbody class="tabla">
+                </tbody>
+            </table>
+        </div>
+    </body>
 </html>
