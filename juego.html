@@ -24,7 +24,7 @@
                     let validacionDistribuidora = $("#distribuidora").val() == "";
                     let validacionImagen = $("#imagen").val().length >= 10 && $("#imagen").val().length <= 256;
                     if (validacionNombre && validacionDescripcion && validacionPrecio && !validacionGenero && !validacionPlataforma && !validacionDistribuidora && validacionImagen) {
-                        let objeto = {
+                        let objeto2 = {
                             id:index,
                             nombre:nombreInput.value,
                             descripcion:descripcionInput.value,
@@ -35,28 +35,25 @@
                             precio:$("#precio").val(),
                         };
                         index += 1;
-                        lista.push(objeto);
-                        for(let i = 0;i<=lista.length;i++){
-                            let objeto2 = lista[i];
-                            $(".tabla").append(
-                                '<tr>'+
-                                '<td class="text-center">'+(parseInt(objeto2.id,10) + 1)+'</td>'+
-                                '<td class="text-center"><img width="50px" height="50px" src="'+objeto2.imagen+'"></td>'+
-                                '<td class="text-center">'+objeto2.nombre+'<br>'+objeto2.genero+'</td>'+
-                                '<td class="text-center">'+objeto2.descripcion+'</td>'+
-                                '<td class="text-center">'+objeto2.plataforma+'</td>'+
-                                '<td class="text-center">'+objeto2.distribuidora+'</td>'+
-                                '<td class="text-center">'+objeto2.precio+'</td>'+
-                                '<td class="text-center"><a class="btn btn-primary"  ><span class="bi bi-pencil-square"></span></a></td>' +
-                                '<td class="text-center"><a class="btn btn-danger" ><span class="bi bi-trash"></span></a></td>'
-                                +'</tr>')
-                        }
+                        lista.push(objeto2);
+                        $(".tabla").append(
+                            '<tr>'+
+                            '<td class="text-center">'+(parseInt(objeto2.id,10) + 1)+'</td>'+
+                            '<td class="text-center"><img width="50px" height="50px" src="'+objeto2.imagen+'"></td>'+
+                            '<td class="text-center">'+objeto2.nombre+'<br>'+objeto2.genero+'</td>'+
+                            '<td class="text-center">'+objeto2.descripcion+'</td>'+
+                            '<td class="text-center">'+objeto2.plataforma+'</td>'+
+                            '<td class="text-center">'+objeto2.distribuidora+'</td>'+
+                            '<td class="text-center">'+objeto2.precio+'</td>'+
+                            '<td class="text-center"><a class="btn btn-primary"  ><span class="bi bi-pencil-square"></span></a></td>' +
+                            '<td class="text-center"><button class="btn btn-danger" ><span class="bi bi-trash"></span></button></td>'
+                            +'</tr>');
                         return;
                     }else{
                         $(".invalid-feedback").show(500).delay(1000).hide(500);
                     }
                 });
-
+                $(".tabla").on("click",".btn btn-danger")
             });
         </script>
 
@@ -161,7 +158,7 @@
                         <th class="text-center"></th>
                     </tr>
                 </thead>
-                <tbody class="tabla">
+                <tbody class="tabla" id="tabla">
                 </tbody>
             </table>
         </div>
