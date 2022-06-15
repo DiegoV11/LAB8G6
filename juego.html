@@ -15,10 +15,10 @@
                         <h2 > Juego</h2>
                     </div>
                     <div class="container-fluid">
-                        <form method="POST" class="row g-3"  >
+                        <form class="row g-3" action="juego.html" onsubmit="return validarForm()"  >
                             <div class="form-group">
                                 <label>Nombre</label>
-                                <input type="text" class="form-control"  >
+                                <input type="text" class="form-control" name="nombre" id="nombre" >
 
                             </div>
                             <div class="form-group">
@@ -38,9 +38,7 @@
                                 <label >Plataforma</label>
                                 <select class="form-select"  >
                                     <option value="-1">- Seleccione -</option>
-                                    <
                                 </select>
-                                <div class="invalid-feedback" >Error</div>
                             </div>
                             <div class="form-group">
                                 <label >Distribuidora</label>
@@ -60,7 +58,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">S/</div>
                                     </div>
-                                    <input type="text" class="form-control"  t >
+                                    <input type="text" class="form-control" >
                                     <div class="invalid-feedback" >Error</div>
                                 </div>
                             </div>
@@ -93,7 +91,7 @@
             <tbody>
                 <tr>
                     <td ></td>
-                    <td><img ></td>
+                    <td></td>
                     <td ></td>
                     <td ></td>
                     <td ></td>
@@ -103,6 +101,22 @@
             </tbody>
         </table>
 
+
+        <script>
+            function validarForm(){
+                let nombreInput = document.getElementById("nombre");
+                console.log(nombreInput.value);
+                let validacionNombre =nombreInput.value == ""|| nombreInput.value.length<3 || nombreInput.value.length>50;
+                let validacion
+                if(validacionNombre){
+                    console.log("Falsooo")
+                    return false;
+                }
+
+                return true;
+            }
+
+        </script>
 
 
     </body>
