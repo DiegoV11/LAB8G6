@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Distribuidoras</title>
+        <link href="styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+        <script>
+            $(document).ready(function () {
+                var lista = [];
+                var index =0;
+                $("form").submit(function (e) {
+
+                    e.preventDefault();
+
+                    let nombreInput = document.getElementById("nombre");
+                    let descripcionInput = document.getElementById("descripcion");
+                    let webInput = document.getElementById("web");
+                    let fundacionInput = document.getElementById("fundacion");
+                    let paisInput = document.getElementById("pais")
+
+                    let validacionNombre = nombreInput.value.length>=3 && nombreInput.size<=50;
+                    let validacionDescripcion =descripcionInput.value.length>=3 && descripcionInput.value.length<=512;
+                    let validacionWeb = webInput.value.length>=3 && webInput.value.length<=198;
+                    let validacionFundacion = fundacionInput.value <= 1800 && fundacionInput.value>=2100;
+                    let validacionPais = paisInput.value == "";
+
+                    if(validacionNombre && validacionDescripcion && validacionWeb && validacionFundacion && !validacionPais){
+                        let data = {
+                            id:index,
+                            nombre:nombreInput.value,
+                            descripcion:descripcionInput.value,
+                            web:webInput.value,
+                            fundacion:fundacionInput.value,
+                            pais:paisInput.value,
+                        };
+                        index += 1;
+                        lista.push(data);
+                        $(".tabla").append(
+                            '<tr>'+
+                            '<td class="text-center">'+(parseInt(data.id,10) + 1)+'</td>'+
+                            '<td class="text-center">'+data.nombre+'</td>'+
+                            '<td class="text-center">'+data.descripcion+'</td>'+
+                            '<td class="text-center">'+data.web+'</td>'+
+                            '<td class="text-center">'+data.fundacion+'</td>'+
+                            '<td class="text-center">'+data.pais+'</td>'+
+                            '<td class="text-center"><a class="btn btn-primary"  ><span class="bi bi-pencil-square"></span></a></td>' +
+                            '<td class="text-center"><a class="btn btn-danger" ><span class="bi bi-trash"></span></a></td>'
+                            +'</tr>');
+
+                        return;
+                    }else{
+                        $(".invalid-feedback").show(500).delay(1000).hide(500);
+                    }
+
+                });
+            });
+
+
+
+
+        </script>
+
+    </head>
+    <body>
+        <div class='container container-app'>
+
+            <div id="content">
+                <main>
+                    <!-- Contenido -->
+                    <div class="page-header text-center">
+                        <h2 >Distribuidoras</h2>
+                    </div>
+                    <div class="container-fluid">
+                        <form class="row g-3" action="distribuidoras.html" >
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input id="nombre" name="nombre" type="text" class="form-control"  >
+                                <div class="invalid-feedback" >Error</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea class="form-control" id="descripcion" name="descripcion" type="text" ></textarea>
+                                <div class="invalid-feedback" >Error</div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Web</label>
+                                <input id="web" name="web" type="url" class="form-control" >
+                                <div class="invalid-feedback" >Error</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Fundacion</label>
+                                <input  id="fundacion" name="fundacion" type="number" class="form-control" >
+                                <div class="invalid-feedback" >Error</div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label >Pais</label>
+                                <select id="pais" name="pais" class="form-select"  >
+                                    <option value="-1">- Seleccione -</option>
+                                    <option value="Wii"> Peru </option>
+                                    <option value="PlayStation 4 "> Estados Unidos </option>
+                                    <option value="Xbox 360"> España </option>
+                                    <option value="Nintendo Switch"> Mexico </option>
+                                    <option value="PlayStation 5 "> Brasil </option>
+                                    <option value="Xbox Serie X"> Japon </option>
+                                    <option value="Nintendo Switch Lite"> China </option>
+                                </select>
+                                <div class="invalid-feedback" >Error</div>
+                            </div>
+
+
+                            <input type="hidden" />
+                            <div class="form-group">
+                                <a class="btn btn-danger">Cancelar</a>
+                                <button type="submit" class="btn btn-primary" >Añadir</button>
+                            </div>
+                        </form>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Tablas -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Nombre</th>
+                        <th class="text-center">Descripción</th>
+                        <th class="text-center">Web</th>
+                        <th class="text-center">Fundacion</th>
+                        <th class="text-center">Pais</th>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody class="tabla" id="tabla">
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
